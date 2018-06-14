@@ -10,7 +10,7 @@ require(ggplot2)
 
 setwd("/scripts")
 
-
+source("config", encoding = "UTF-8")
 
 ### download data && prepare attachments
 
@@ -26,24 +26,27 @@ prices <- paste0('http://api.nbp.pl/api/cenyzlota/',
   write.csv2(fn, row.names = FALSE)
 
 # plot
-png(file.path(getwd(), "tmp/", "plot.png"))
-ggplot(prices, aes(as.Date(date), price)) + 
-  geom_point() + 
-  xlab("date") + 
-  ggtitle(paste0("Gold prices in ", format(Sys.Date(), "%Y")));dev.off()
+png(file.path(getwd(), "tmp/", "plot.png")); ggplot(prices, aes(as.Date(date), price)) + geom_point() + xlab("date") + ggtitle(paste0("Gold prices in ", format(Sys.Date(), "%Y"))); dev.off()
 
 ### prepare e-mail
 
-render(input         = "template.Rmd",
+render(input         = "template_html.Rmd",
        output_file   = "email.html",
        output_format = "html_document",
        params        = list(prices = prices),
        encoding      = "utf-8")
-
+	   
 # trick: images in e-mail
 read_file("email.html") %>%
   gsub("%%plot%%", '<img src="tmp/plot.png">', ., fixed = TRUE) %>%
   readr::write_file("email.html")
+
+# docx attachment
+render(input         = "template_docx.Rmd",
+       output_file   = "report.docx",
+       output_format = "word_document",
+       params        = list(prices = prices),
+       encoding      = "utf-8")
 
 ### send e-mail
 
@@ -55,9 +58,10 @@ email <- send.mail(from         = email_from,
                    html         = TRUE,
                    smtp         = smtp_config,
                    inline       = TRUE,
-                   attach.files = fn,
+                   attach.files = c(fn, "report.docx"),
                    authenticate = TRUE,
-                   send         = FALSE)
+                   send         = FALSE,
+				   debug        = TRUE)
 
 e <- try(email$send())
 

@@ -1,9 +1,5 @@
 ---
-output: 
-    html_document:
-        theme: null
-        highlight: null
-        mathjax: null
+output: word_document
 params:
   prices: "prices"
 ---
@@ -59,12 +55,23 @@ cat("The price ", dn_desc, " the price from ",
 
 ```
 
----
+----
 
-%%plot%%
+Sample plot
 
----
+```{r}
+ggplot(prices, aes(as.Date(date), price)) + 
+  geom_point() + 
+  xlab("date") + 
+  ggtitle(paste0("Gold prices in ", format(Sys.Date(), "%Y")))
+```
 
-The file with raw data is in the attachment.
+----
+
+Sample table
+
+```{r}
+knitr::kable(params$prices, caption=paste0("Gold prices in ", format(Sys.Date(), "%Y")))
+```
 
 Sources: [http://www.nbp.pl/home.aspx?f=/statystyka/ceny_zlota.html](http://www.nbp.pl/home.aspx?f=/statystyka/ceny_zlota.html)

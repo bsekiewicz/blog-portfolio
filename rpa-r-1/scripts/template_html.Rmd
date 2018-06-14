@@ -1,0 +1,70 @@
+---
+output: 
+    html_document:
+        theme: null
+        highlight: null
+        mathjax: null
+params:
+  prices: "prices"
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE)
+```
+
+```{r, include = FALSE}
+require(magrittr)
+require(ggplot2)
+
+n = nrow(params$prices)
+
+dn = (params$prices$price[n] - params$prices$price[n-1])/params$prices$price[n-1]
+
+if (dn > 0) {
+  dn_desc = '**<font color="green">increased by</font>**'
+} else if (dn < 0) {
+  dn_desc = '**<font color="red">decreased by</font>**'
+}
+dn %<>% formatC(digits = 4, format = "f")
+dn_desc %<>% paste(dn, "% compared to")
+
+if (params$prices$price[n] == params$prices$price[n-1]) {
+  dn_desc = "has not changed in relation to"
+}
+
+d1 = (params$prices$price[n] - params$prices$price[1])/params$prices$price[1]
+
+if (d1 > 0) {
+  d1_desc = '**<font color="green">increased by</font>**'
+} else if (d1 < 0) {
+  d1_desc = '**<font color="red">decreased by</font>**'
+}
+d1 %<>% formatC(digits = 4, format = "f")
+d1_desc %<>% paste(d1, "% compared to")
+
+if (params$prices$price[n] == params$prices$price[1]) {
+  d1_desc = "has not changed in relation to"
+}
+
+```
+
+The current gold price is **```r params$prices$price[n]```** PLN (```r params$prices$date[n]```).
+
+```{r results='asis'}
+
+cat("The price ", dn_desc, " the price from ", 
+       params$prices$date[n-1], " (", params$prices$price[n-1], " PLN) ",
+       "and ", d1_desc, " the price from the beginning of the year ",
+       "(", params$prices$price[1],  " PLN).", sep = "")
+
+```
+
+See also the attachments.
+
+---
+
+%%plot%%
+
+---
+
+Sources: [http://www.nbp.pl/home.aspx?f=/statystyka/ceny_zlota.html](http://www.nbp.pl/home.aspx?f=/statystyka/ceny_zlota.html)

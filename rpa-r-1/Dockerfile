@@ -1,7 +1,7 @@
 FROM r-base:3.5.0
 
 RUN apt-get update
-RUN apt-get install -y --fix-missing default-jdk libcurl4-openssl-dev
+RUN apt-get install -y --fix-missing openjdk-8-jdk libcurl4-openssl-dev
 RUN rm /var/lib/apt/lists/* -R
 
 RUN R CMD javareconf
@@ -21,5 +21,5 @@ COPY scripts /scripts
 
 WORKDIR /scripts
 
-#CMD R CMD BATCH send_email.R
+CMD Rscript send_email.R
 

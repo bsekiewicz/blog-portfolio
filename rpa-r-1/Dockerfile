@@ -22,4 +22,3 @@ COPY scripts /scripts
 WORKDIR /scripts
 
 CMD Rscript send_email.R
-

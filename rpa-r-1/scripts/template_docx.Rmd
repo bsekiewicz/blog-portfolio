@@ -74,4 +74,4 @@ Sample table
 knitr::kable(params$prices, caption=paste0("Gold prices in ", format(Sys.Date(), "%Y")))
 ```
 
-Sources: [http://www.nbp.pl/home.aspx?f=/statystyka/ceny_zlota.html](http://www.nbp.pl/home.aspx?f=/statystyka/ceny_zlota.html)
+Source: [http://www.nbp.pl/home.aspx?f=/statystyka/ceny_zlota.html](http://www.nbp.pl/home.aspx?f=/statystyka/ceny_zlota.html)

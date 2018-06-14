@@ -9,7 +9,6 @@ require(ggplot2)
 ### settings
 
 setwd("/scripts")
-
 source("config", encoding = "UTF-8")
 
 ### download data && prepare attachments

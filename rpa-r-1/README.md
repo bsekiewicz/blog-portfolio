@@ -2,9 +2,9 @@
 
 Prepare report and send as e-mail.
 
-How to use?
+How to use it? Just run this code:
 
-```bash
+```sh
 docker build -t rpa .
 docker run --rm rpa
 ```

@@ -67,4 +67,4 @@ See also the attachments.
 
 ---
 
-Sources: [http://www.nbp.pl/home.aspx?f=/statystyka/ceny_zlota.html](http://www.nbp.pl/home.aspx?f=/statystyka/ceny_zlota.html)
+Source: [http://www.nbp.pl/home.aspx?f=/statystyka/ceny_zlota.html](http://www.nbp.pl/home.aspx?f=/statystyka/ceny_zlota.html)

@@ -1,4 +1,5 @@
-# OCR in webscraping
+# RPA with R
 
-Source: www.worksmarter.pl/post/rpa-r-1/
+Prepare report and send as e-mail.
+
 Source: www.worksmarter.pl/en/post/rpa-r-1/

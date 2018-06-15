@@ -1,3 +1,3 @@
-# OCR in webscraping
+# WebScraping && OCR
 
-Source: www.worksmarter.pl/post/webscraping-case-study-1/
+Sources: [PL](http://www.worksmarter.pl/post/webscraping-case-study-1/) | [EN](http://www.worksmarter.pl/en/post/webscraping-case-study-1/)

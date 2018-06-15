@@ -21,4 +21,4 @@ COPY scripts /scripts
 
 WORKDIR /scripts
 
-CMD Rscript send_email.R
+CMD Rscript download_prepare_send.R

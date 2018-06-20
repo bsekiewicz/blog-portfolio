@@ -1,7 +1,12 @@
 ---
-output: word_document
+output: 
+    html_document:
+        theme: null
+        highlight: null
+        mathjax: null
 params:
   prices: "prices"
+  is_html: "is_html"
 ---
 
 ```{r setup, include = FALSE}
@@ -49,29 +54,28 @@ The current gold price is **```r params$prices$price[n]```** PLN (```r params$pr
 ```{r results='asis'}
 
 cat("The price ", dn_desc, " the price from ", 
-       params$prices$date[n-1], " (", params$prices$price[n-1], " PLN) ",
-       "and ", d1_desc, " the price from the beginning of the year ",
-       "(", params$prices$price[1],  " PLN).", sep = "")
+     params$prices$date[n-1], " (", params$prices$price[n-1], " PLN) ",
+     "and ", d1_desc, " the price from the beginning of the year ",
+     "(", params$prices$price[1],  " PLN).", sep = "")
 
 ```
 
-----
+See also the attachments.
 
-Sample plot
+---
 
-```{r}
-ggplot(prices, aes(as.Date(date), price)) + 
-  geom_point() + 
-  xlab("date") + 
-  ggtitle(paste0("Gold prices in ", format(Sys.Date(), "%Y")))
+```{r results='asis'}
+
+if (params$is_html) {
+  cat('%%plot%%')
+} else {
+  ggplot(prices, aes(as.Date(date), price)) + 
+    geom_point() + 
+    xlab("date") + 
+    ggtitle(paste0("Gold prices in ", format(Sys.Date(), "%Y")))
+}
 ```
 
-----
-
-Sample table
-
-```{r}
-knitr::kable(params$prices, caption=paste0("Gold prices in ", format(Sys.Date(), "%Y")))
-```
+---
 
 Source: [http://www.nbp.pl/home.aspx?f=/statystyka/ceny_zlota.html](http://www.nbp.pl/home.aspx?f=/statystyka/ceny_zlota.html)

@@ -1,7 +1,7 @@
 # Custom parameters
 
 email_from    <- "from@mail.com"
-email_to      <- c("to1@mail.com", "to2@mail.com)
+email_to      <- c("to1@mail.com", "to2@mail.com")
 
 # It works with OVH servers
 

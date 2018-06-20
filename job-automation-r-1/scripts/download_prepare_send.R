@@ -29,10 +29,11 @@ png(file.path(getwd(), "tmp/", "plot.png")); ggplot(prices, aes(as.Date(date), p
 
 ### prepare e-mail
 
-render(input         = "template_html.Rmd",
+render(input         = "template.Rmd",
        output_file   = "email.html",
        output_format = "html_document",
-       params        = list(prices = prices),
+       params        = list(prices = prices,
+                            is_html = TRUE),
        encoding      = "utf-8")
 	   
 # trick: images in e-mail
@@ -41,10 +42,11 @@ read_file("email.html") %>%
   readr::write_file("email.html")
 
 # docx attachment
-render(input         = "template_docx.Rmd",
+render(input         = "template.Rmd",
        output_file   = "report.docx",
        output_format = "word_document",
-       params        = list(prices = prices),
+       params        = list(prices = prices,
+                            is_html = FALSE),
        encoding      = "utf-8")
 
 ### send e-mail
@@ -68,3 +70,4 @@ e <- try(email$send())
 
 unlink("tmp", recursive = TRUE)
 unlink("email.html", recursive = TRUE)
+unlink("report.docx", recursive = TRUE)

@@ -2,11 +2,11 @@
 
 ### Schema 
 
-download data > prepare summary > send as e-mail
+download data > prepare summary > send e-mail
 
 ### How to use it?
 
-Complete the configuration file: `scripts/config` and just run this code!
+Complete the configuration file: `scripts/config` and run this code:
 
 ```sh
 

@@ -3,10 +3,18 @@
 email_from    <- "from@mail.com"
 email_to      <- c("to1@mail.com", "to2@mail.com")
 
-# It works with OVH servers
+# OVH EXCHANGE
 
 smtp_config <- list(host.name = "ssl0.ovh.net",
                     port      = 587,
-                    user.name = "username",
+                    user.name = "email address",
                     passwd    = "password",
                     ssl       = TRUE)
+					
+# GMAIL
+
+# smtp_config <- list(host.name = "smtp.gmail.com",
+#                     port      = 587,
+#                     user.name = "gmail address",
+#                     passwd    = "password",
+#                     ssl       = TRUE)

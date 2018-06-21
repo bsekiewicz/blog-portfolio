@@ -39,7 +39,7 @@ render(input         = "template.Rmd",
 # trick: images in e-mail
 read_file("email.html") %>%
   gsub("%%plot%%", '<img src="tmp/plot.png">', ., fixed = TRUE) %>%
-  readr::write_file("email.html")
+  write_file("email.html")
 
 # docx attachment
 render(input         = "template.Rmd",

@@ -1,3 +1,3 @@
-### www.worksmarter.pl
+### WorkSmarter - Blog - Data Scientist Bartosz Sękiewicz
 
-### www.worksmarter.pl/en/
+[PL](http://www.worksmarter.pl) | [EN](http://www.worksmarter.pl/en)

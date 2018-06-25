@@ -9,7 +9,6 @@ download data > prepare summary > send e-mail
 Complete the configuration file: `scripts/config` and run this code:
 
 ```sh
-
 docker build -t job-automation .
 docker run --rm job-automation
 ```

@@ -62,9 +62,9 @@ class CrawlAdsBasicSpider(CrawlSpider):
         # for each ad in page (promo and no promo)
         for ad in response.css('.col-md-content article'):
 
-            link = None
+            url = None
             if ad.css("::attr('data-url')").extract():
-                link = ad.css("::attr('data-url')").extract()[0].strip()
+                url = ad.css("::attr('data-url')").extract()[0].strip()
 
             item_id = None
             if ad.css("::attr('data-item-id')").extract():
@@ -112,7 +112,8 @@ class CrawlAdsBasicSpider(CrawlSpider):
             i['voivodeship'] = self.voivodeships[self.selected_voivodeship_id]
             i['item_id'] = item_id
             i['tracking_id'] = tracking_id
-            i['link'] = link
+            i['url'] = url
+            i['url_ref'] = response.url
             i['featured_name'] = featured_name
             i['title'] = title
             i['subtitle'] = subtitle

@@ -122,5 +122,4 @@ class CrawlAdsBasicSpider(CrawlSpider):
             i['price_per_m'] = price_per_m
             i['area'] = area
             i['others'] = others
-
             yield i

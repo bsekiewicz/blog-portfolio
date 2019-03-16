@@ -38,8 +38,8 @@ class CrawlAdsBasicSpider(CrawlSpider):
                     'swietokrzyskie']
 
     selected_type_1 = settings.get('type_1_id', 0)
-    selected_type_2 = settings.get('type_2_id', 0)
-    selected_voivodeship_id = settings.get('voivodeship_id', 0)
+    selected_type_2 = settings.get('type_2_id', 2)
+    selected_voivodeship_id = settings.get('voivodeship_id', 6)
 
     allowed_domains = ['www.otodom.pl']
     start_urls = ['https://www.otodom.pl/' +
@@ -62,49 +62,49 @@ class CrawlAdsBasicSpider(CrawlSpider):
         # for each ad in page (promo and no promo)
         for ad in response.css('.col-md-content article'):
 
-            url = None
-            if ad.css("::attr('data-url')").extract():
-                url = ad.css("::attr('data-url')").extract()[0].strip()
+            url = ad.css("::attr('data-url')").extract()
+            if url:
+                url = url[0].strip()
 
-            item_id = None
-            if ad.css("::attr('data-item-id')").extract():
-                item_id = ad.css("::attr('data-item-id')").extract()[0].strip()
+            item_id = ad.css("::attr('data-item-id')").extract()
+            if item_id:
+                item_id = item_id[0].strip()
 
-            tracking_id = None
-            if ad.css("::attr('data-tracking-id')").extract():
-                tracking_id = ad.css("::attr('data-tracking-id')").extract()[0].strip()
+            tracking_id = ad.css("::attr('data-tracking-id')").extract()
+            if tracking_id:
+                tracking_id = tracking_id[0].strip()
 
-            featured_name = None
-            if ad.css("::attr('data-featured-name')").extract():
-                featured_name = ad.css("::attr('data-featured-name')").extract()[0].strip()
+            featured_name = ad.css("::attr('data-featured-name')").extract()
+            if featured_name:
+                featured_name = featured_name[0].strip()
 
-            title = None
-            if ad.css(".offer-item-title ::text").extract():
-                title = ad.css(".offer-item-title ::text").extract()[0]
+            title = ad.css(".offer-item-title ::text").extract()
+            if title:
+                title = title[0].strip()
 
-            subtitle = None
-            if ad.css(".offer-item-header p ::text").extract():
-                subtitle = ad.css(".offer-item-header p ::text").extract()[0].strip()
+            subtitle = ad.css(".offer-item-header p ::text").extract()
+            if subtitle:
+                subtitle = subtitle[0].strip()
 
-            rooms = None
-            if ad.css(".offer-item-rooms ::text").extract():
-                rooms = ad.css(".offer-item-rooms ::text").extract()[0].strip()
+            rooms = ad.css(".offer-item-rooms ::text").extract()
+            if rooms:
+                rooms = rooms[0].strip()
 
-            price = None
-            if ad.css(".offer-item-price ::text").extract():
-                price = ad.css(".offer-item-price ::text").extract()[0].strip()
+            price = ad.css(".offer-item-price ::text").extract()
+            if price:
+                price = price[0].strip()
 
-            price_per_m = None
-            if ad.css(".offer-item-price-per-m ::text").extract():
-                price_per_m = ad.css(".offer-item-price-per-m ::text").extract()[0].strip()
+            price_per_m = ad.css(".offer-item-price-per-m ::text").extract()
+            if price_per_m:
+                price_per_m = price_per_m[0].strip()
 
-            area = None
-            if ad.css(".offer-item-area ::text").extract():
-                area = ad.css(".offer-item-area ::text").extract()[0].strip()
+            area = ad.css(".offer-item-area ::text").extract()
+            if area:
+                area = area[0].strip()
 
-            others = None
-            if ad.css(".params-small li ::text").extract():
-                others = [x.strip() for x in ad.css(".params-small li ::text").extract()]
+            others = ad.css(".params-small li ::text").extract()
+            if others:
+                others = [x.strip() for x in others]
 
             i = {}
             i['type_1'] = self.type_1[self.selected_type_1]

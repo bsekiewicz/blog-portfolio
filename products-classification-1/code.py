@@ -120,7 +120,7 @@ def find_perp_set(perp_table, input_data_len, max_proportion=3, bp=0.90):
 
 df = pd.read_csv("allegro-sports-shoes.csv", sep=';')
 data = list(df.iloc[:, 0])
-data = clean_data(data, filter)
+data = clean_data(data)
 freq_table = prepare_freq_table(data)
 perp_table = prepare_perp_table(freq_table)
 perp_set_1 = find_perp_set(perp_table, input_data_len=len(data))

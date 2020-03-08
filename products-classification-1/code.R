@@ -1,17 +1,19 @@
+### the first prototype ###
+
+# packages
 require(magrittr)
 require(tm)
 require(dplyr)
 require(stopwords)
 require(stringi)
 
-
+# read data
 data <- read.csv2("allegro-sports-shoes.csv", 
                   stringsAsFactors = FALSE,
                   header = TRUE) %>% 
   extract2(1)
 
 # clean data
-
 data %<>% tolower %>% trimws
 data %<>% sapply(stri_replace_all_regex, ' ([0-9]+[^ ]{0,} )+', ' ')
 data %<>% sapply(stri_replace_all_regex, '^[0-9]+[^ ]{0,} ', ' ')
@@ -21,13 +23,11 @@ data <- tm::tm_map(data, removePunctuation)
 data <- tm::tm_map(data, removeWords, stopwords("polish", 'stopwords-iso'))
 
 # frequency table
-
 freqTable = data %>% 
   lapply(termFreq) %>% 
   do.call(bind_rows, .)
 
 # perp table
-
 freqTable.colsum = colSums(freqTable, na.rm = TRUE)
 cols_to_remove = (freqTable.colsum >= (length(freqTable.colsum) - 5)) | (freqTable.colsum <= 5)
 if (length(cols_to_remove) > 0) {
@@ -69,7 +69,6 @@ tmp %<>% dplyr::filter(is_perp) %>%
 tmp %<>% distinct()
 
 # find perp set
-
 curr_set = c(tmp$term1[1], tmp$term2[1])
 
 repeat { 

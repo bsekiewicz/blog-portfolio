@@ -10,7 +10,7 @@ smtp_config <- list(host.name = "ssl0.ovh.net",
                     user.name = "email address",
                     passwd    = "password",
                     ssl       = TRUE)
-					
+
 # GMAIL
 
 # smtp_config <- list(host.name = "smtp.gmail.com",
